@@ -19,6 +19,13 @@ public class MainActivity extends AppCompatActivity {
                 "VarelaRound-Regular.ttf");
         title.setTypeface(face);
 
-        Button signIn = (Button)
+        Button search = (Button) findViewById(R.id.searchButton);
+        search.setTypeface(face);
+
+        Button signIn = (Button) findViewById(R.id.signIn);
+        signIn.setTypeface(face);
+
+        Button signUp = (Button) findViewById(R.id.signUp);
+        signUp.setTypeface(face);
     }
 }
