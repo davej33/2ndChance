@@ -1,9 +1,18 @@
 <resources>
-    <string name="app_name">2ndChance</string>
+    <string name="app_name">Work</string>
     <string name="title_activity_job_list">JobListActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
+
+    <!-- Search / Welcome Screen -->
+    <string name="search_input_label">Search&#x2026;</string>
+    <string name="location_input_label">Location&#x2026;</string>
+    <string name="sign_in_button_label">Sign-In</string>
+    <string name="sign_up_button_label">Sign-Up</string>
+    <string name="search_button_label">Search</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_of_use">Terms of Use</string>
 </resources>

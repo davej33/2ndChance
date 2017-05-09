@@ -4,18 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.example.android.a2ndchance.MainActivity">
 
-    <View
-        android:id="@+id/textView"
+    <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:background="@android:color/background_dark"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="70sp"
+        app:layout_constraintBottom_toTopOf="@+id/searchInput"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/searchInput"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="205dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/search_input_label"
+        android:textColor="@color/tw__solid_white"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/locationInput"
@@ -29,96 +55,124 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Location..."
+        android:text="@string/location_input_label"
+        android:textColor="@color/tw__solid_white"
         app:layout_constraintBottom_toTopOf="@+id/searchButton"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/searchInput"
         app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="0dp"
-        android:layout_height="47dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginStart="32dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Search..."
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="205dp" />
 
     <Button
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="189dp"
-        android:background="@android:color/transparent"
-        android:text="Search"
+        android:background="@drawable/search_button_background"
+        android:text="@string/search_button_label"
+        android:textColor="@color/tw__composer_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="192dp"
-        android:layout_height="126dp"
-        android:layout_marginTop="63dp"
-        android:background="@drawable/translucent_background"
-        android:text="Sign-Up"
-        android:textSize="30sp"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/searchButton" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="189dp"
-        android:layout_height="126dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginTop="0dp"
-        android:background="@drawable/translucent_background"
-        android:text="Sign-In"
-        android:textSize="30sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchButton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/view"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button3"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginBottom="0dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.833">
 
-    <View
-        android:layout_width="6dp"
-        android:layout_height="0dp"
-        android:background="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.75"
-        app:layout_constraintRight_toLeftOf="@+id/button5"
-        app:layout_constraintLeft_toRightOf="@+id/button3"
-        android:id="@+id/view" />
+        <LinearLayout
+            android:id="@+id/signInButtonLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchButton"
+            app:layout_constraintVertical_bias="0.228">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:text="WORK"
-        android:textColor="@android:color/white"
-        android:textSize="70sp"
-        android:typeface="monospace"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp" />
+            <ImageView
+                android:id="@+id/signInIcon"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_gravity="center"
+                android:src="@drawable/signUpIcon_512x512" />
+
+            <TextView
+                android:id="@+id/signInText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/sign_in_button_label" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/signUpButtonLayout"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchButton"
+            app:layout_constraintVertical_bias="0.228">
+
+            <ImageView
+                android:id="@+id/signUpIcon"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_gravity="center"
+                android:src="@drawable/signUpIcon_512x512" />
+
+            <TextView
+                android:id="@+id/signUpText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/sign_up_button_label" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--<Button-->
+    <!--android:id="@+id/signInButton"-->
+    <!--android:textColor="@color/tw__composer_white"-->
+    <!--android:layout_width="192dp"-->
+    <!--android:layout_height="126dp"-->
+    <!--android:layout_marginTop="63dp"-->
+    <!--android:background="@drawable/sign_in_up_button_background"-->
+    <!--android:text="@string/sign_in_button_label"-->
+    <!--android:textSize="30sp"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/searchButton" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/signUpButton"-->
+    <!--android:layout_width="192dp"-->
+    <!--android:layout_height="126dp"-->
+    <!--android:layout_marginBottom="0dp"-->
+    <!--android:textColor="@color/tw__composer_white"-->
+    <!--android:layout_marginTop="0dp"-->
+    <!--android:background="@drawable/sign_in_up_button_background"-->
+    <!--android:text="@string/sign_up_button_label"-->
+    <!--android:textSize="30sp"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintRight_toRightOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="@+id/signInButton"-->
+    <!--app:layout_constraintVertical_bias="0.0" />-->
 
 
 </android.support.constraint.ConstraintLayout>
