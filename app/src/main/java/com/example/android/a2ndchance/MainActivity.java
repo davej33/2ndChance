@@ -2,7 +2,8 @@ package com.example.android.a2ndchance;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -19,7 +20,7 @@ import com.example.android.a2ndchance.job_frag.JobFragment;
 
 public class MainActivity extends AppCompatActivity implements
         JobFragment.OnFragmentInteractionListener,
-        ProfileFragment.OnFragmentInteractionListener{
+        ProfileFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+//    private SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -44,19 +45,42 @@ public class MainActivity extends AppCompatActivity implements
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 //        getWindow().setStatusBarColor();
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+//        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+//        mViewPager = (ViewPager) findViewById(R.id.main_view_pager);
+//        mViewPager.setAdapter(mSectionsPagerAdapter);
+//
+//        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+//        tabLayout.setupWithViewPager(mViewPager);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+                findViewById(R.id.bottom_navigation);
 
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.navigation_jobs:
+                                getSupportFragmentManager().beginTransaction().replace(R.id.bottom_navigation,
+                                        new JobFragment()).commit();
+                            break;
+//                            case R.id.navigation_dashboard:
+//
+//                                break;
+                            case R.id.navigation_profile:
+                                getSupportFragmentManager().beginTransaction().replace(R.id.bottom_navigation,
+                                        new ProfileFragment()).commit();
+
+                                break;
+                        }
+                        return false;
+                    }
+                });
     }
 
 
@@ -126,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements
             // Return a PlaceholderFragment (defined as a static inner class below).
 
 
-            switch(position){
+            switch (position) {
                 case 0:
                     return new JobFragment();
                 case 1:
