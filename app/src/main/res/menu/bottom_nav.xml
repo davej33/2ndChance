@@ -8,11 +8,11 @@
         android:title="Jobs"
         app:showAsAction="ifRoom" />/>
 
-    <!--<item-->
-        <!--android:id="@+id/navigation_dashboard"-->
-        <!--android:icon="@drawable/ic_dashboard_black_24dp"-->
-        <!--android:title="Dash"-->
-        <!--app:showAsAction="ifRoom" />/>-->
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Dash"
+        app:showAsAction="ifRoom" />/>
 
     <item
         android:id="@+id/navigation_profile"
