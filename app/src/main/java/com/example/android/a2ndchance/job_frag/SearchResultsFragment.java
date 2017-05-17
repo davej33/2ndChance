@@ -2,6 +2,7 @@ package com.example.android.a2ndchance.job_frag;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.a2ndchance.R;
+import com.example.android.a2ndchance.utils.NetworkUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +30,7 @@ public class SearchResultsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        task.execute();
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search_results, container, false);
     }
@@ -55,6 +58,16 @@ public class SearchResultsFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
+        @Override
+        protected String doInBackground(Void... params) {
+            return NetworkUtils.fetchData(getContext());
+        }
+
+
+    };
+
 
     /**
      * This interface must be implemented by activities that contain this

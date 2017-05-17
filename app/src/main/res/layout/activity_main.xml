@@ -29,29 +29,27 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <fragment
+    <FrameLayout
         android:id="@+id/main_frag_container"
         android:name="com.example.android.a2ndchance.job_frag.JobFragment"
-        android:layout_width="382dp"
-        android:layout_height="462dp"
+        android:layout_width="384dp"
+        android:layout_height="539dp"
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginTop="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintHorizontal_bias="0.558"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="-13dp"
-        tools:layout_editor_absoluteY="49dp" />
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:itemBackground="@color/colorPrimary"
+        app:itemBackground="@color/tw__light_gray"
         app:itemIconTint="@color/tw__composer_white"
         app:itemTextColor="@color/tw__composer_black"
         app:layout_constraintBottom_toBottomOf="parent"

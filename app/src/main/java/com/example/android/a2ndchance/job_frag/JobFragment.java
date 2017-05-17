@@ -33,7 +33,7 @@ public class JobFragment extends Fragment {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    private JobSectionsPagerAdapter mJobSectionsPagerAdapter;
+    private static JobSectionsPagerAdapter mJobSectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -60,11 +60,13 @@ public class JobFragment extends Fragment {
 
         // create view pager
         mViewPager = (ViewPager) view.findViewById(R.id.job_frag_view_pager);
-        mViewPager.setAdapter(new JobSectionsPagerAdapter(this.getChildFragmentManager()));
+        mJobSectionsPagerAdapter = new JobSectionsPagerAdapter(this.getChildFragmentManager());
+        mViewPager.setAdapter(mJobSectionsPagerAdapter);
 
         // Give the TabLayout the ViewPager
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
         return view;
     }
 

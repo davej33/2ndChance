@@ -36,14 +36,14 @@ public class MainActivity extends AppCompatActivity implements
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (!sIsInitialized) {
-            getSupportFragmentManager().beginTransaction().add(R.id.main_frag_container, new JobFragment()).commit();
-            sIsInitialized = true;
-        }
-
-
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);
+
+        // Reload saved state if exists %%%%%%% manage saved state here
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frag_container,
+                    new JobFragment()).commit();
+        }
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements
                             case R.id.navigation_profile:
                                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frag_container,
                                         new ProfileFragment()).commit();
-
                                 break;
                         }
                         return true;
