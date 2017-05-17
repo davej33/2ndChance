@@ -4,13 +4,21 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.android.a2ndchance.R;
 import com.example.android.a2ndchance.utils.NetworkUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,7 +29,8 @@ import com.example.android.a2ndchance.utils.NetworkUtils;
 public class SearchResultsFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-
+    private ListView mListView;
+    private SearchListAdapter mAdpater;
     public SearchResultsFragment() {
         // Required empty public constructor
     }
@@ -30,9 +39,11 @@ public class SearchResultsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_search_results, container, false);
         task.execute();
+        mListView = (ListView) view.findViewById(R.id.list_view_search);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search_results, container, false);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -59,13 +70,17 @@ public class SearchResultsFragment extends Fragment {
         mListener = null;
     }
 
-    AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
+    AsyncTask<Void, Void, ArrayList<String>> task = new AsyncTask<Void, Void, ArrayList<String>>() {
         @Override
-        protected String doInBackground(Void... params) {
+        protected ArrayList<String> doInBackground(Void... params) {
             return NetworkUtils.fetchData(getContext());
         }
 
-
+        @Override
+        protected void onPostExecute(ArrayList<String> strings) {
+            mAdpater = new SearchListAdapter(getContext(), strings);
+            mListView.setAdapter(mAdpater);
+        }
     };
 
 
@@ -82,5 +97,31 @@ public class SearchResultsFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private class SearchListAdapter extends ArrayAdapter<String>{
+
+        private List<String> mList;
+
+        public SearchListAdapter(@NonNull Context context, @NonNull List<String> objects) {
+            super(context, 0, objects);
+            mList = objects;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            // Check if an existing view is being reused, otherwise inflate the view
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.applicant_item, parent, false);
+            }
+
+            String s = mList.get(position);
+            TextView textView = (TextView) convertView.findViewById(R.id.applicant_item_textview);
+            textView.setText(s);
+
+
+            return convertView;
+        }
     }
 }
