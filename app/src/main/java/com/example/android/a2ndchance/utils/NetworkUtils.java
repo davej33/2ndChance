@@ -20,15 +20,21 @@ import java.util.Scanner;
 
 public final class NetworkUtils {
 
-
     // log tag
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
+
+    // constants
+    private static String JOBS_SEARCH_URL = "all_jobs.php";
 
     // returns data to enter in DB
     public static ArrayList<String> fetchData(Context context) {
 
+        // TODO: switch statement to handle parsing of different tables
+
         // builds Uri using current state of preferences
-        Uri uri = Uri.parse(context.getString(R.string.url_base));
+        Uri uri = Uri.parse(context.getString(R.string.url_base)).buildUpon()
+                .appendEncodedPath(JOBS_SEARCH_URL)
+                .build();
 
         URL url = null;
         try {
