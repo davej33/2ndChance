@@ -7,6 +7,8 @@
     android:background="@color/colorPrimaryDark"
     tools:context="com.example.android.a2ndchance.InitialActivity">
 
+    <!--TODO: Set resource strings and colors -->
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -56,7 +58,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/location_input_label"
-        android:textColor="@color/tw__solid_white"
+        android:textColor="#fff"
         app:layout_constraintBottom_toTopOf="@+id/searchButton"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"

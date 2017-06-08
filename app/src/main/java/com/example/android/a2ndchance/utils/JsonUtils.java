@@ -52,8 +52,9 @@ public final class JsonUtils {
                 int emp_id = element.getInt(JOB_KEY_EMPLOYER_ID);
                 int categ_id = element.getInt(JOB_KEY_CATEGORY_ID);
                 String title = element.getString(JOB_KEY_TITLE);
+                String zip = element.getString(JOB_KEY_ZIPCODE);
 
-                String s = job_id + " - " + emp_id + " - " + categ_id + " - " + title;
+                String s = job_id + " - " + emp_id + " - " + categ_id + " - " + title + " - " + zip;
 
                 cv.add(s);
             }
