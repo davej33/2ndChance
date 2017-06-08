@@ -1,12 +1,14 @@
 package com.example.android.a2ndchance.job_frag;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.android.a2ndchance.R;
-import com.example.android.a2ndchance.utils.NetworkUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,13 +26,16 @@ import java.util.List;
  * {@link SearchResultsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class SearchResultsFragment extends Fragment {
+public class SearchResultsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    private static final int JOB_SEARCH_LOADER_ID = 100;
     private OnFragmentInteractionListener mListener;
-    private ListView mListView;
+    private ListView mRecyclerView;
     private SearchListAdapter mAdpater;
+
+    // Required empty public constructor
     public SearchResultsFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -40,8 +43,9 @@ public class SearchResultsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_results, container, false);
-        task.execute();
-        mListView = (ListView) view.findViewById(R.id.list_view_search);
+
+
+        mRecyclerView = (ListView) view.findViewById(R.id.recycler_view_job_search);
         // Inflate the layout for this fragment
         return view;
     }
@@ -70,18 +74,33 @@ public class SearchResultsFragment extends Fragment {
         mListener = null;
     }
 
-    AsyncTask<Void, Void, ArrayList<String>> task = new AsyncTask<Void, Void, ArrayList<String>>() {
-        @Override
-        protected ArrayList<String> doInBackground(Void... params) {
-            return NetworkUtils.fetchData(getContext());
-        }
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return null;
+    }
 
-        @Override
-        protected void onPostExecute(ArrayList<String> strings) {
-            mAdpater = new SearchListAdapter(getContext(), strings);
-            mListView.setAdapter(mAdpater);
-        }
-    };
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
+
+//    AsyncTask<Void, Void, ArrayList<String>> task = new AsyncTask<Void, Void, ArrayList<String>>() {
+//        @Override
+//        protected ArrayList<String> doInBackground(Void... params) {
+//            return NetworkUtils.fetchData(getContext());
+//        }
+//
+//        @Override
+//        protected void onPostExecute(ArrayList<String> strings) {
+//            mAdpater = new SearchListAdapter(getContext(), strings);
+//            mListView.setAdapter(mAdpater);
+//        }
+//    };
 
 
     /**

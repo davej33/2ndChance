@@ -5,8 +5,8 @@
     tools:context="com.example.android.a2ndchance.job_frag.SearchResultsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <ListView
-        android:id="@+id/list_view_search"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_job_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
