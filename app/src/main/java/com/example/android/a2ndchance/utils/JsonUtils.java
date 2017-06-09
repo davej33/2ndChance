@@ -1,12 +1,13 @@
 package com.example.android.a2ndchance.utils;
 
+import android.content.ContentValues;
 import android.util.Log;
+
+import com.example.android.a2ndchance.data.JobsContract;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 /**
  * Created by dnj on 5/17/17.
@@ -14,15 +15,15 @@ import java.util.ArrayList;
 
 public final class JsonUtils {
 
-    public static ArrayList<String> parseJson(String bufferedString) {
+    public static ContentValues[] parseJson(String bufferedString) {
 
         // TODO: switch statement to handle parsing of different tables
-        ArrayList<String> cv = jobsJsonParse(bufferedString);
+        ContentValues[] cv = jobsJsonParse(bufferedString);
 
         return cv;
     }
 
-    private static ArrayList<String> jobsJsonParse(String bufferedString) {
+    private static ContentValues[] jobsJsonParse(String bufferedString) {
 
         final String JOB_KEY_ID = "id";
         final String JOB_KEY_EMPLOYER_ID = "employer_id";
@@ -40,7 +41,7 @@ public final class JsonUtils {
         final String JOB_KEY_COMMISSION = "commission";
         final String JOB_KEY_NEGOTIABLE = "salary_negotiable";
 
-        ArrayList<String> cv = new ArrayList<>();
+        ContentValues[] cv = new ContentValues[]{};
 
         try {
             JSONObject root = new JSONObject(bufferedString);
@@ -49,20 +50,22 @@ public final class JsonUtils {
                 JSONObject element = jobs.getJSONObject(i);
 
                 int job_id = element.getInt(JOB_KEY_ID);
-                int emp_id = element.getInt(JOB_KEY_EMPLOYER_ID);
+                String emp_id = String.valueOf(element.getInt(JOB_KEY_EMPLOYER_ID));
                 int categ_id = element.getInt(JOB_KEY_CATEGORY_ID);
                 String title = element.getString(JOB_KEY_TITLE);
-                String zip = element.getString(JOB_KEY_ZIPCODE);
+                String zipcode = element.getString(JOB_KEY_ZIPCODE);
 
-                String s = job_id + " - " + emp_id + " - " + categ_id + " - " + title + " - " + zip;
+                ContentValues contentValue = new ContentValues();
+                contentValue.put(JobsContract.JobSearchEntry.EMPLOYER_ID, emp_id);
+                contentValue.put(JobsContract.JobSearchEntry.JOB_TITLE, title);
+                contentValue.put(JobsContract.JobSearchEntry.JOB_ZIPCODE, zipcode);
 
-                cv.add(s);
             }
         } catch (JSONException e) {
             Log.e("Error JU", "Error parsing json: " + e);
         }
 
-        Log.i("JSON UTILS", "Array size: " + cv.size());
+        Log.i("JSON UTILS", "Array size: " + cv.length);
         return cv;
     }
 }

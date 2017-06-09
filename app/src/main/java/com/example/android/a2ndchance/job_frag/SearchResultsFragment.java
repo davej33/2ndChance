@@ -9,11 +9,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.android.a2ndchance.R;
@@ -30,7 +30,7 @@ public class SearchResultsFragment extends Fragment implements LoaderManager.Loa
 
     private static final int JOB_SEARCH_LOADER_ID = 100;
     private OnFragmentInteractionListener mListener;
-    private ListView mRecyclerView;
+    private RecyclerView mRecyclerView;
     private SearchListAdapter mAdpater;
 
     // Required empty public constructor
@@ -45,7 +45,7 @@ public class SearchResultsFragment extends Fragment implements LoaderManager.Loa
         View view = inflater.inflate(R.layout.fragment_search_results, container, false);
 
 
-        mRecyclerView = (ListView) view.findViewById(R.id.recycler_view_job_search);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_job_search);
         // Inflate the layout for this fragment
         return view;
     }
@@ -76,7 +76,8 @@ public class SearchResultsFragment extends Fragment implements LoaderManager.Loa
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return null;
+
+        return ;
     }
 
     @Override
@@ -88,6 +89,8 @@ public class SearchResultsFragment extends Fragment implements LoaderManager.Loa
     public void onLoaderReset(Loader<Cursor> loader) {
 
     }
+
+
 
 //    AsyncTask<Void, Void, ArrayList<String>> task = new AsyncTask<Void, Void, ArrayList<String>>() {
 //        @Override

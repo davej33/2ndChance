@@ -20,12 +20,14 @@ public final class JobsContract  {
                 .appendPath(JOB_SEARCH_RESULTS_PATH)
                 .build();
 
+        // table
+        public static final String JOB_SEARCH_RESULTS_TABLE = "search-results";
+
         // columns
         public static final String _ID = BaseColumns._ID;
-        public static final String JOB_SEARCH_RESULTS_TABLE = "search-results";
-        public static final String JOB_TYPE = "type";
+        public static final String JOB_ZIPCODE = "zipcode";
         public static final String EMPLOYER_ID = "employer-id";
-        public static final String JOB_TITLE = "";
+        public static final String JOB_TITLE = "title";
 
 
 

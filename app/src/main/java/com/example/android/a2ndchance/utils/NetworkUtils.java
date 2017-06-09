@@ -1,5 +1,6 @@
 package com.example.android.a2ndchance.utils;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
@@ -11,7 +12,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -27,7 +27,7 @@ public final class NetworkUtils {
     private static String JOBS_SEARCH_URL = "all_jobs.php";
 
     // returns data to enter in DB
-    public static ArrayList<String> fetchData(Context context) {
+    public static ContentValues[] fetchData(Context context) {
 
         // TODO: switch statement to handle parsing of different tables
 
