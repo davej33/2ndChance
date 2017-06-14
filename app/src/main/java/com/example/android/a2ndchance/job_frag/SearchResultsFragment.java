@@ -4,21 +4,22 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import com.example.android.a2ndchance.R;
-
-import java.util.List;
+import com.example.android.a2ndchance.data.JobsContract;
+import com.example.android.a2ndchance.sync.SyncUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,26 +29,55 @@ import java.util.List;
  */
 public class SearchResultsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    private static final String LOG_TAG = SearchResultsFragment.class.getSimpleName();
     private static final int JOB_SEARCH_LOADER_ID = 100;
     private OnFragmentInteractionListener mListener;
     private RecyclerView mRecyclerView;
-    private SearchListAdapter mAdpater;
+    private JobRecyclerViewAdapter mAdapter;
+
 
     // Required empty public constructor
     public SearchResultsFragment() {
 
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_results, container, false);
 
-
+        // setup recycler view with adapter and layout manager
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_job_search);
-        // Inflate the layout for this fragment
+        mAdapter = new JobRecyclerViewAdapter();
+        mRecyclerView.setAdapter(mAdapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),
+                LinearLayoutManager.VERTICAL, false);
+        mRecyclerView.setLayoutManager(layoutManager);
+
+        if (SyncUtils.sIsInitialized) {
+            displayData();
+        } else {
+            SyncUtils.initializeDB(getContext());
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    displayData();
+                }
+            }, 1000);
+        }
+
+
         return view;
+    }
+
+    private void displayData() {
+        getLoaderManager().initLoader(JOB_SEARCH_LOADER_ID, null, this);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -76,34 +106,25 @@ public class SearchResultsFragment extends Fragment implements LoaderManager.Loa
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-
-        return ;
+        // return new cursor loader
+        return new CursorLoader(getContext(), JobsContract.JobSearchEntry.JOB_SEARCH_RESULTS_URI,
+                null, null, null, null);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data != null && data.getCount() > 0) {
+            mAdapter.swapCursor(data);
+        } else {
+            Log.d(LOG_TAG, "OnLoadFinished cursor count: " + data.toString());
+        }
 
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-
+        mAdapter.swapCursor(null);
     }
-
-
-
-//    AsyncTask<Void, Void, ArrayList<String>> task = new AsyncTask<Void, Void, ArrayList<String>>() {
-//        @Override
-//        protected ArrayList<String> doInBackground(Void... params) {
-//            return NetworkUtils.fetchData(getContext());
-//        }
-//
-//        @Override
-//        protected void onPostExecute(ArrayList<String> strings) {
-//            mAdpater = new SearchListAdapter(getContext(), strings);
-//            mListView.setAdapter(mAdpater);
-//        }
-//    };
 
 
     /**
@@ -121,29 +142,5 @@ public class SearchResultsFragment extends Fragment implements LoaderManager.Loa
         void onFragmentInteraction(Uri uri);
     }
 
-    private class SearchListAdapter extends ArrayAdapter<String>{
 
-        private List<String> mList;
-
-        public SearchListAdapter(@NonNull Context context, @NonNull List<String> objects) {
-            super(context, 0, objects);
-            mList = objects;
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            // Check if an existing view is being reused, otherwise inflate the view
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.applicant_item, parent, false);
-            }
-
-            String s = mList.get(position);
-            TextView textView = (TextView) convertView.findViewById(R.id.applicant_item_textview);
-            textView.setText(s);
-
-
-            return convertView;
-        }
-    }
 }

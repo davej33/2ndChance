@@ -41,11 +41,12 @@ public final class JsonUtils {
         final String JOB_KEY_COMMISSION = "commission";
         final String JOB_KEY_NEGOTIABLE = "salary_negotiable";
 
-        ContentValues[] cv = new ContentValues[]{};
-
+        ContentValues[] cv = null;
         try {
             JSONObject root = new JSONObject(bufferedString);
             JSONArray jobs = root.getJSONArray("jobs");
+            cv = new ContentValues[jobs.length()];
+
             for (int i = 0; i < jobs.length(); i++) {
                 JSONObject element = jobs.getJSONObject(i);
 
@@ -60,12 +61,15 @@ public final class JsonUtils {
                 contentValue.put(JobsContract.JobSearchEntry.JOB_TITLE, title);
                 contentValue.put(JobsContract.JobSearchEntry.JOB_ZIPCODE, zipcode);
 
+                cv[i] = contentValue;
+
             }
         } catch (JSONException e) {
             Log.e("Error JU", "Error parsing json: " + e);
         }
 
         Log.i("JSON UTILS", "Array size: " + cv.length);
+        Log.i("JSON UTILS", "Array: " + cv.toString());
         return cv;
     }
 }

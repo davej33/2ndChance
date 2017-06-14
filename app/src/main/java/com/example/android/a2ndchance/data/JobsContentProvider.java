@@ -46,7 +46,24 @@ public final class JobsContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
-        return null;
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        Cursor c;
+
+        switch (sUriMatcher.match(uri)) {
+            case JOB_SEARCH_TABLE_CODE:
+                c = db.query(JobsContract.JobSearchEntry.JOB_SEARCH_RESULTS_TABLE,
+                        projection, selection, selectionArgs, null, null, sortOrder);
+                Log.d(LOG_TAG, "Cursor length: " + c.getCount());
+
+                if (c.getCount() > 0) {
+                    return c;
+                } else {
+                    return null;
+                }
+            default:
+                return null;
+        }
+
     }
 
     @Nullable
@@ -79,21 +96,22 @@ public final class JobsContentProvider extends ContentProvider {
         int insertCount = 0;
 
         // match URI and insert
-        switch(sUriMatcher.match(uri)){
+        switch (sUriMatcher.match(uri)) {
             case JOB_SEARCH_TABLE_CODE:
                 db.beginTransaction();
                 long check;
-                try{
-                    for (ContentValues cv: values) {
+                try {
+                    for (ContentValues cv : values) {
                         check = db.insert(JobsContract.JobSearchEntry.JOB_SEARCH_RESULTS_TABLE, null, cv);
-                        if(check != 1) insertCount++;
+                        if (check != 1) insertCount++;
                     }
                     db.setTransactionSuccessful();
-                } catch (SQLException e){
-                    Log.e(LOG_TAG, "Bulk insert error: " + e);
+                } catch (SQLException e) {
+                    Log.e(LOG_TAG, "Bulk insert error%%%%%%%%%%%%: " + e);
                 } finally {
                     db.endTransaction();
                 }
+                Log.e(LOG_TAG, "Bulk insert count%%%%%%%%%%%%: " + insertCount);
                 return insertCount;
             default:
                 return super.bulkInsert(uri, values);

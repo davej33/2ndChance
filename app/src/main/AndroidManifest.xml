@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.a2ndchance">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -27,6 +27,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.a2ndchance.InitialActivity" />
         </activity>
+
+        <provider
+            android:name=".data.JobsContentProvider"
+            android:authorities="com.example.android.a2ndchance" />
+
+        <service
+            android:name=".sync.JobIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

@@ -7,6 +7,8 @@ import android.util.Log;
 
 import com.example.android.a2ndchance.R;
 
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -27,7 +29,7 @@ public final class NetworkUtils {
     private static String JOBS_SEARCH_URL = "all_jobs.php";
 
     // returns data to enter in DB
-    public static ContentValues[] fetchData(Context context) {
+    public static ContentValues[] fetchData(Context context) throws JSONException {
 
         // TODO: switch statement to handle parsing of different tables
 
