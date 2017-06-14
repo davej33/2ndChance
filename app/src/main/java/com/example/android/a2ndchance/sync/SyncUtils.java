@@ -31,7 +31,7 @@ public final class SyncUtils {
                 if(c == null || c.getCount() == 0){
                     syncImmediately(context);
                 }
-                c.close();
+//                c.close();
             }
         });
         providerCheck.run();
