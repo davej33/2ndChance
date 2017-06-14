@@ -45,13 +45,13 @@ public class JobRecyclerViewAdapter extends RecyclerView.Adapter<JobRecyclerView
         int emplIdCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.EMPLOYER_ID);
         String emplID = mCursor.getString(emplIdCol);
 
-        int zipCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.JOB_ZIPCODE);
-        String zipcode = mCursor.getString(zipCol);
+//        int zipCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.JOB_ZIPCODE);
+//        String zipcode = mCursor.getString(zipCol);
 
         // set variables
         holder.mTitleTV.setText(jobTitle);
         holder.mEmplIdTV.setText(emplID);
-        holder.mZipTV.setText(zipcode);
+//        holder.mZipTV.setText(zipcode);
     }
 
     @Override

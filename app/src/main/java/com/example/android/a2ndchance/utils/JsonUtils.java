@@ -50,16 +50,16 @@ public final class JsonUtils {
             for (int i = 0; i < jobs.length(); i++) {
                 JSONObject element = jobs.getJSONObject(i);
 
-                int job_id = element.getInt(JOB_KEY_ID);
+//                int job_id = element.getInt(JOB_KEY_ID);
                 String emp_id = String.valueOf(element.getInt(JOB_KEY_EMPLOYER_ID));
-                int categ_id = element.getInt(JOB_KEY_CATEGORY_ID);
+//                int categ_id = element.getInt(JOB_KEY_CATEGORY_ID);
                 String title = element.getString(JOB_KEY_TITLE);
-                String zipcode = element.getString(JOB_KEY_ZIPCODE);
+//                String zipcode = element.getString(JOB_KEY_ZIPCODE);
 
                 ContentValues contentValue = new ContentValues();
                 contentValue.put(JobsContract.JobSearchEntry.EMPLOYER_ID, emp_id);
                 contentValue.put(JobsContract.JobSearchEntry.JOB_TITLE, title);
-                contentValue.put(JobsContract.JobSearchEntry.JOB_ZIPCODE, zipcode);
+//                contentValue.put(JobsContract.JobSearchEntry.JOB_ZIPCODE, zipcode);
 
                 cv[i] = contentValue;
 
