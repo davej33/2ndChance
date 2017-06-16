@@ -9,13 +9,13 @@
         android:id="@+id/date_posted_icon"
         android:layout_width="10dp"
         android:layout_height="10dp"
-        app:srcCompat="@drawable/ic_work_black_24px"
-        app:layout_constraintLeft_toRightOf="@+id/textView2"
+        android:layout_marginBottom="0dp"
         android:layout_marginLeft="5dp"
-        app:layout_constraintTop_toTopOf="@+id/location_icon"
         android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/location_icon"
-        android:layout_marginBottom="0dp" />
+        app:layout_constraintLeft_toRightOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/location_icon"
+        app:srcCompat="@drawable/ic_calendar_24px" />
 
     <TextView
         android:id="@+id/positionTitle"
@@ -27,7 +27,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -50,13 +50,14 @@
         android:id="@+id/location_icon"
         android:layout_width="10dp"
         android:layout_height="10dp"
-        app:srcCompat="@drawable/ic_work_black_24px"
-        app:layout_constraintTop_toTopOf="@+id/textView"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
-        android:layout_marginBottom="0dp"
         app:layout_constraintLeft_toRightOf="@+id/textView"
-        android:layout_marginLeft="8dp" />
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:srcCompat="@drawable/ic_location_on_black_24px" />
 
     <TextView
         android:id="@+id/companyName"
@@ -64,10 +65,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:gravity="center_vertical"
         android:text="CACI"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintLeft_toRightOf="@+id/work_icon"
         app:layout_constraintTop_toBottomOf="@+id/positionTitle" />
 
@@ -77,10 +78,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="4dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="0dp"
         android:text="2 Days Ago"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/cityName"
         app:layout_constraintLeft_toRightOf="@+id/date_posted_icon"
         app:layout_constraintTop_toTopOf="@+id/cityName" />
@@ -91,10 +92,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="4dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="0dp"
         android:text="Chicago"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/location_icon"
         app:layout_constraintLeft_toRightOf="@+id/location_icon"
         app:layout_constraintTop_toTopOf="@+id/location_icon"
@@ -126,7 +127,7 @@
         android:background="#fff"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_star" />
+        app:srcCompat="@drawable/ic_favorite_border_black_24px" />
 
     <TextView
         android:id="@+id/textView"
@@ -165,7 +166,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -174,6 +175,13 @@
         app:layout_constraintTop_toBottomOf="@+id/companyName"
         app:layout_constraintVertical_bias="0.0"
         tools:text="Super duper alackazazm fsijbnfdijbf msdnnasdfmna afdjnasdfo nsadfnkoasdf ajnsdfnls laskdfn lajnksdf aldjnsfk kasdfjn jsdfn kdjfb kqwjfb ksjfadn" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline3"
+        app:layout_constraintGuide_begin="35dp"
+        android:orientation="horizontal" />
 
 
 </android.support.constraint.ConstraintLayout>

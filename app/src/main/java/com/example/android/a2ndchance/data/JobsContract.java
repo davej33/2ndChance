@@ -29,6 +29,7 @@ public final class JobsContract  {
         public static final String EMPLOYER_ID = "employer_id";
         public static final String JOB_TITLE = "title";
         public static final String DESCRIPTION = "description";
+        public static final String COMPANY_NAME = "company";
 
 
 

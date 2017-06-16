@@ -26,7 +26,7 @@ public final class JsonUtils {
     private static ContentValues[] jobsJsonParse(String bufferedString) {
 
         final String JOB_KEY_ID = "id";
-        final String JOB_KEY_EMPLOYER_ID = "employer_id";
+        final String JOB_KEY_COMPANY_NAME = "company_name";
         final String JOB_KEY_CATEGORY_ID = "category_id";
         final String JOB_KEY_EMPLOYMENT_TYPE = "employment_type";
         final String JOB_KEY_TITLE = "title";
@@ -50,18 +50,14 @@ public final class JsonUtils {
             for (int i = 0; i < jobs.length(); i++) {
                 JSONObject element = jobs.getJSONObject(i);
 
-//                int job_id = element.getInt(JOB_KEY_ID);
-                String emp_id = String.valueOf(element.getInt(JOB_KEY_EMPLOYER_ID));
-//                int categ_id = element.getInt(JOB_KEY_CATEGORY_ID);
+                String company = element.getString(JOB_KEY_COMPANY_NAME);
                 String title = element.getString(JOB_KEY_TITLE);
-//                String zipcode = element.getString(JOB_KEY_ZIPCODE);
                 String description = element.getString(JOB_KEY_DESCRIPTION);
 
                 ContentValues contentValue = new ContentValues();
-                contentValue.put(JobsContract.JobSearchEntry.EMPLOYER_ID, emp_id);
+                contentValue.put(JobsContract.JobSearchEntry.COMPANY_NAME, company);
                 contentValue.put(JobsContract.JobSearchEntry.JOB_TITLE, title);
                 contentValue.put(JobsContract.JobSearchEntry.DESCRIPTION, description);
-//                contentValue.put(JobsContract.JobSearchEntry.JOB_ZIPCODE, zipcode);
 
                 cv[i] = contentValue;
 

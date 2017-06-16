@@ -42,8 +42,8 @@ public class JobRecyclerViewAdapter extends RecyclerView.Adapter<JobRecyclerView
         int titleCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.JOB_TITLE);
         String jobTitle = mCursor.getString(titleCol);
 
-        int emplIdCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.EMPLOYER_ID);
-        String emplID = mCursor.getString(emplIdCol);
+        int companyCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.COMPANY_NAME);
+        String company = mCursor.getString(companyCol);
 
 //        int zipCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.JOB_ZIPCODE);
 //        String zipcode = mCursor.getString(zipCol);
@@ -53,7 +53,7 @@ public class JobRecyclerViewAdapter extends RecyclerView.Adapter<JobRecyclerView
 
         // set variables
         holder.mTitleTV.setText(jobTitle);
-        holder.mEmplIdTV.setText(emplID);
+        holder.mCompanyTV.setText(company);
         holder.mDescrTV.setText(description);
 
 //        holder.mZipTV.setText(zipcode);
@@ -78,14 +78,14 @@ public class JobRecyclerViewAdapter extends RecyclerView.Adapter<JobRecyclerView
 
         TextView mTitleTV;
         TextView mDescrTV;
-        TextView mEmplIdTV;
+        TextView mCompanyTV;
 
         public JobSearchViewHolder(View itemView) {
             super(itemView);
 
             mTitleTV = (TextView) itemView.findViewById(R.id.positionTitle);
             mDescrTV = (TextView) itemView.findViewById(R.id.descriptionText);
-            mEmplIdTV = (TextView) itemView.findViewById(R.id.companyName);
+            mCompanyTV = (TextView) itemView.findViewById(R.id.companyName);
         }
     }
 }
