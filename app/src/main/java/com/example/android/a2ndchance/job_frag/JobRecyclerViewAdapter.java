@@ -48,9 +48,14 @@ public class JobRecyclerViewAdapter extends RecyclerView.Adapter<JobRecyclerView
 //        int zipCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.JOB_ZIPCODE);
 //        String zipcode = mCursor.getString(zipCol);
 
+        int descrCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.DESCRIPTION);
+        String description = mCursor.getString(descrCol);
+
         // set variables
         holder.mTitleTV.setText(jobTitle);
         holder.mEmplIdTV.setText(emplID);
+        holder.mDescrTV.setText(description);
+
 //        holder.mZipTV.setText(zipcode);
     }
 
@@ -72,15 +77,15 @@ public class JobRecyclerViewAdapter extends RecyclerView.Adapter<JobRecyclerView
     public static class JobSearchViewHolder extends RecyclerView.ViewHolder {
 
         TextView mTitleTV;
-        TextView mZipTV;
+        TextView mDescrTV;
         TextView mEmplIdTV;
 
         public JobSearchViewHolder(View itemView) {
             super(itemView);
 
             mTitleTV = (TextView) itemView.findViewById(R.id.positionTitle);
-            mZipTV = (TextView) itemView.findViewById(R.id.zipCode);
-            mEmplIdTV = (TextView) itemView.findViewById(R.id.company);
+            mDescrTV = (TextView) itemView.findViewById(R.id.descriptionText);
+            mEmplIdTV = (TextView) itemView.findViewById(R.id.companyName);
         }
     }
 }

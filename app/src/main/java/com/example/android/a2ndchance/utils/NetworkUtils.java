@@ -26,7 +26,8 @@ public final class NetworkUtils {
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
     // constants
-    private static String JOBS_SEARCH_URL = "all_jobs.php";
+    private static String JOBS_SEARCH_URL = "rezoome/apiTest.php";
+    private static String JOBS_TABLES = "jobs";
 
     // returns data to enter in DB
     public static ContentValues[] fetchData(Context context) throws JSONException {
@@ -36,6 +37,7 @@ public final class NetworkUtils {
         // builds Uri using current state of preferences
         Uri uri = Uri.parse(context.getString(R.string.url_base)).buildUpon()
                 .appendEncodedPath(JOBS_SEARCH_URL)
+                .appendEncodedPath(JOBS_TABLES)
                 .build();
 
         URL url = null;
@@ -50,6 +52,10 @@ public final class NetworkUtils {
         if (url != null) {
             try {
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setReadTimeout(10000);
+                connection.setConnectTimeout(15000);
+                connection.connect();
                 Log.i(LOG_TAG, "Connection Status: " + connection.getResponseCode());
 
                 InputStream inputStream = connection.getInputStream();

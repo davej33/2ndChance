@@ -55,10 +55,12 @@ public final class JsonUtils {
 //                int categ_id = element.getInt(JOB_KEY_CATEGORY_ID);
                 String title = element.getString(JOB_KEY_TITLE);
 //                String zipcode = element.getString(JOB_KEY_ZIPCODE);
+                String description = element.getString(JOB_KEY_DESCRIPTION);
 
                 ContentValues contentValue = new ContentValues();
                 contentValue.put(JobsContract.JobSearchEntry.EMPLOYER_ID, emp_id);
                 contentValue.put(JobsContract.JobSearchEntry.JOB_TITLE, title);
+                contentValue.put(JobsContract.JobSearchEntry.DESCRIPTION, description);
 //                contentValue.put(JobsContract.JobSearchEntry.JOB_ZIPCODE, zipcode);
 
                 cv[i] = contentValue;

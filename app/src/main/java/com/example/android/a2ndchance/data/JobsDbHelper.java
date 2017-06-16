@@ -29,6 +29,7 @@ final class JobsDbHelper extends SQLiteOpenHelper {
         final String CREATE_DB = "CREATE TABLE " + JobsContract.JobSearchEntry.JOB_SEARCH_RESULTS_TABLE + " (" +
                 JobsContract.JobSearchEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 JobsContract.JobSearchEntry.JOB_TITLE + " TEXT NOT NULL, " +
+                JobsContract.JobSearchEntry.DESCRIPTION + " TEXT NOT NULL, " +
                 JobsContract.JobSearchEntry.EMPLOYER_ID + " TEXT NOT NULL); ";
 
         db.execSQL(CREATE_DB);
