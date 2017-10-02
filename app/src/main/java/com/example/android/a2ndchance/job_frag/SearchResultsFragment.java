@@ -116,7 +116,7 @@ public class SearchResultsFragment extends Fragment implements LoaderManager.Loa
         if (data != null && data.getCount() > 0) {
             mAdapter.swapCursor(data);
         } else {
-            Log.d(LOG_TAG, "OnLoadFinished cursor count: " + data.toString());
+            Log.d(LOG_TAG, "OnLoadFinished cursor count: ");
         }
 
     }

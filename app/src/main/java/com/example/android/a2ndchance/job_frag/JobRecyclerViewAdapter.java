@@ -42,16 +42,21 @@ public class JobRecyclerViewAdapter extends RecyclerView.Adapter<JobRecyclerView
         int titleCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.JOB_TITLE);
         String jobTitle = mCursor.getString(titleCol);
 
-        int emplIdCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.EMPLOYER_ID);
-        String emplID = mCursor.getString(emplIdCol);
+        int companyCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.COMPANY_NAME);
+        String company = mCursor.getString(companyCol);
 
-        int zipCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.JOB_ZIPCODE);
-        String zipcode = mCursor.getString(zipCol);
+//        int zipCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.JOB_ZIPCODE);
+//        String zipcode = mCursor.getString(zipCol);
+
+        int descrCol = mCursor.getColumnIndex(JobsContract.JobSearchEntry.DESCRIPTION);
+        String description = mCursor.getString(descrCol);
 
         // set variables
         holder.mTitleTV.setText(jobTitle);
-        holder.mEmplIdTV.setText(emplID);
-        holder.mZipTV.setText(zipcode);
+        holder.mCompanyTV.setText(company);
+        holder.mDescrTV.setText(description);
+
+//        holder.mZipTV.setText(zipcode);
     }
 
     @Override
@@ -72,15 +77,15 @@ public class JobRecyclerViewAdapter extends RecyclerView.Adapter<JobRecyclerView
     public static class JobSearchViewHolder extends RecyclerView.ViewHolder {
 
         TextView mTitleTV;
-        TextView mZipTV;
-        TextView mEmplIdTV;
+        TextView mDescrTV;
+        TextView mCompanyTV;
 
         public JobSearchViewHolder(View itemView) {
             super(itemView);
 
             mTitleTV = (TextView) itemView.findViewById(R.id.positionTitle);
-            mZipTV = (TextView) itemView.findViewById(R.id.zipCode);
-            mEmplIdTV = (TextView) itemView.findViewById(R.id.company);
+            mDescrTV = (TextView) itemView.findViewById(R.id.descriptionText);
+            mCompanyTV = (TextView) itemView.findViewById(R.id.companyName);
         }
     }
 }

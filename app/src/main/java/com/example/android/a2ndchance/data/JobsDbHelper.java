@@ -20,11 +20,11 @@ final class JobsDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-    final String CREATE_DB = "CREATE TABLE " + JobsContract.JobSearchEntry.JOB_SEARCH_RESULTS_TABLE + " (" +
-            JobsContract.JobSearchEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            JobsContract.JobSearchEntry.JOB_TITLE + " TEXT NOT NULL, " +
-            JobsContract.JobSearchEntry.EMPLOYER_ID + " TEXT NOT NULL, " +
-            JobsContract.JobSearchEntry.JOB_ZIPCODE + " TEXT NOT NULL); ";
+        final String CREATE_DB = "CREATE TABLE " + JobsContract.JobSearchEntry.JOB_SEARCH_RESULTS_TABLE + " (" +
+                JobsContract.JobSearchEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                JobsContract.JobSearchEntry.JOB_TITLE + " TEXT NOT NULL, " +
+                JobsContract.JobSearchEntry.DESCRIPTION + " TEXT NOT NULL, " +
+                JobsContract.JobSearchEntry.COMPANY_NAME + " TEXT NOT NULL); ";
 
         db.execSQL(CREATE_DB);
 
